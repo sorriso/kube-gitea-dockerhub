@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gitea-nginx-service
+  namespace: devops
+spec:
+  selector:
+    app: gitea-nginx
+  ports:
+    - name: gitea-nginx
+      protocol: TCP
+      port: 9999
+      targetPort: 9999

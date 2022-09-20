@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitea-deployment
+  namespace: devops
+  labels:
+    app: gitea
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gitea
+  template:
+    metadata:
+      labels:
+        app: gitea
+    spec:
+      containers:
+        - name: gitea
+          image: gitea/gitea:1.17.2
+          imagePullPolicy: Never
+          ports:
+          - containerPort: 3000
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 2Gi
+            requests:
+              cpu: 10m
+              memory: 1Gi
+          volumeMounts:
+            - name: gitea-storage
+              mountPath: /data
+              subPath: data
+      volumes:
+        - name: gitea-storage
+          persistentVolumeClaim:
+            claimName: gitea-volume-claim
