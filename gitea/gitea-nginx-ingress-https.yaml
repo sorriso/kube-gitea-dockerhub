@@ -15,6 +15,6 @@ spec:
     - match: HostSNI(`gitea.kube.local`)
       services:
         - name: gitea-nginx-service
-          port: 8300
+          port: 443
   tls:
     passthrough: true

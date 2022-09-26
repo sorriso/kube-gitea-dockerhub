@@ -20,7 +20,9 @@ spec:
         image: nginx:1.23.1-alpine
         imagePullPolicy: Never
         ports:
-          - containerPort: 9999
+          - containerPort: 80
+            protocol: TCP
+          - containerPort: 443
             protocol: TCP
         resources:
           limits:
